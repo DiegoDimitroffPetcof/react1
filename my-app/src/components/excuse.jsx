@@ -3,7 +3,7 @@ import { useState } from "react";
 export function ExcuseGame() {
 
     const excuses = [
-        "I have not money!", "I am feeling a litle sick", "I lost my cellphone!", "I think I'm pregnant!!", "I got an emergency at the bathroom !"
+        "I have not money!", "I am feeling a litle sick", "I lost my cellphone!, I think I'm pregnant!!", "I got an emergency at the bathroom !"
     ]
 
     const ramdon = (array) => {
