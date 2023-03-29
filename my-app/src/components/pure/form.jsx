@@ -1,66 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {  useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
 
+export function Login() {
+  const Navigate = useNavigate();
 
-
-
-
-export function Form() {
-  const [data, setData] = useState({
-    name: "",
-    password: "",
-  });
-  const Navigate = useNavigate()
-
-const  HandleInputChange =(event) =>{
-
-setData({
- 
-    //con ..data hago una pseudo copia del objeto que se encuentra en state
-    ...data,
-    [event.target.name]:event.target.value,
-   
-
-})
-}
-
-const HandleFormChange =async (event) => {
-    event.preventDefault()
-
-try {
-  await axios.post(`https://backendlogin.onrender.com/login`, {      
-    username: data.name,
-    password: data.password
-  })
-  .then(function (response) {
-    console.log(response);
-    Navigate("logged")  
-    
-  })
-
-} catch (error) {
-  console.log("SE PRODUJO UN ERROR")
-  console.log(error)
-}
-
-  };
-
-
-
-
-
+  const initialValues = { name: "", password: "" };
 
   return (
     <div>
-      {" "}
-      <form  onClick={HandleFormChange}>
-        <input placeholder="Name" type="text" name="name" onChange={HandleInputChange}></input>
-        <input placeholder="Password" type="password" name="password"  onChange={HandleInputChange}></input>
-        <button type="Submit" >Enviar</button>
-      </form>
-      {log}
+      <h1>Sign Up</h1>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={async (data) => {
+          await axios
+            .post(`http://localhost:3000/login`, {
+              username: data.name,
+              password: data.password,
+            })
+            .then(function (response) {
+              if (response.data === "Username Or Password incorrect") {
+                Navigate("/loginfail");
+              } else {
+                console.log(response.data);
+                Navigate("loginsuccess", data.username);
+              }
+            });
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <label htmlFor="name">Name</label>
+
+            <Field id="name" name="name" placeholder="Your Name" />
+
+            <label htmlFor="pasword">Password</label>
+            <Field
+              id="pasword"
+              type="password"
+              name="password"
+              placeholder="Pasword"
+            />
+
+            <label htmlFor="email">Email</label>
+
+            <button type="submit">Login</button>
+            {isSubmitting ? <p>Loading</p> : null}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }
-
