@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
+
 }
 
 a {
@@ -40,7 +41,7 @@ nav a:hover {
 }
 
 .mean {
-  background-color: rgb(153, 218, 242);
+  background-color: rgb(68 110 110);
   display: flex;
   flex-direction: column;
   margin: auto 0;
@@ -152,18 +153,10 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: 300px;
   justify-content: center;
   transition: 5s;
-
-  bottom: 455px;
-  z-index: 1;
-  left: 20%;
-  right: 20%;
-  top: 20%;
-  button: 20%;
 }
 
 form input {
@@ -174,6 +167,7 @@ form input {
   width: 350px;
   padding: 5px;
   margin: 5px;
+  font-size: larger;
 }
 
 .documentation {
@@ -352,6 +346,39 @@ form input {
   border-radius: 15px;
 }
 
+/**------LOGGED STYLES---------**/
+.titleLogged {
+  display: flex;
+  font-family: system-ui;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #446e6e;
+  padding: 10%;
+  margin: 0;
+}
+.titleLogged h1 {
+  padding: 0;
+  margin: 0;
+  color: #9eff78;
+}
+
+.titleLogged p {
+  height: 10%;
+  margin: 1%;
+  text-align: start;
+  font-size: larger;
+}
+
+.titleLoggedFail {
+  font-family: system-ui;
+  text-align: center;
+  color: red;
+  height:  525px
+}
+
+/**----------------------------------------------------------**/
+/**------movile performance---------**/
 /**----------------------------------------------------------**/
 
 @media (max-width: 700px) {
@@ -445,6 +472,11 @@ form input {
     color: whitesmoke;
     margin: 1px;
   }
+
+  .signoutForm {
+    width: 95%;
+    height: 22px;
+  }
   #login:hover {
     color: black;
   }
@@ -478,7 +510,7 @@ form input {
   .documentation {
     left: 0;
     top: 14%;
-    height:550px;
+    height: 550px;
     margin: auto 0;
   }
 
@@ -680,5 +712,29 @@ form input {
     height: 40px;
     width: 90%;
     border-radius: 15px;
+  }
+
+  /**------LOGGED STYLES---------**/
+  .titleLogged {
+    display: flex;
+    font-family: system-ui;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #446e6e;
+    padding: 10%;
+    margin: 0;
+  }
+  .titleLogged h1 {
+    padding: 0;
+    margin: 0;
+    color: #9eff78;
+  }
+
+  .titleLogged p {
+    height: 10%;
+    margin: 1%;
+    text-align: start;
+    font-size: larger;
   }
 }

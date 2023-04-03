@@ -2,7 +2,7 @@ import React from "react";
 
 export function Footer() {
   return (
-    <div>
+    <div >
       {" "}
       <footer>
       This is an application created for the practice and exhibition of my work. 

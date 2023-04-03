@@ -5,12 +5,13 @@ import { Formik, Field, Form } from "formik";
 
 export function Login() {
   const Navigate = useNavigate();
-
+  const [logged, setLogged] = useState(false);
+  const [user, setUser] = useState();
   const initialValues = { name: "", password: "" };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div >
+   
       <Formik
         initialValues={initialValues}
         onSubmit={async (data) => {
@@ -23,27 +24,25 @@ export function Login() {
               if (response.data === "Username Or Password incorrect") {
                 Navigate("/loginfail");
               } else {
-                console.log(response.data);
-                Navigate("loginsuccess", data.username);
+
+                //guardo en el session storage la info del usuario
+                sessionStorage.setItem("logged", true);
+                sessionStorage.setItem("user", JSON.stringify(response));
+                Navigate("loginsuccess", response);
               }
             });
         }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <label htmlFor="name">Name</label>
+            <Field id="name" name="name" placeholder="Your Username" />
 
-            <Field id="name" name="name" placeholder="Your Name" />
-
-            <label htmlFor="pasword">Password</label>
             <Field
               id="pasword"
               type="password"
               name="password"
               placeholder="Pasword"
             />
-
-            <label htmlFor="email">Email</label>
 
             <button type="submit">Login</button>
             {isSubmitting ? <p>Loading</p> : null}
